@@ -1,4 +1,4 @@
-var app = angular.module('sheepwebApp', []);
+var app = angular.module('serverApp', []);
 
 var config = {
 	url : 'http://sheeprails.herokuapp.com',

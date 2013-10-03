@@ -4,6 +4,7 @@
 
 app.directive("commbutton", function($compile) {
 	var getTemplate = function(aType, aData) {
+		debugger;
 		var template = '<button id="' + aType + aData + '" class="btn btn-primary" type="button"';
 		if (aType == 'add') {
 			template += ' data-ng-disabled="!new' + aData + '.name || !new' + aData + '.chief || !new' + aData
