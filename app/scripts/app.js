@@ -22,10 +22,6 @@ angular.module('sheepwebApp', ['ngResource'])
 		controller : 'RegionsCtrl',
 		templateUrl : '/views/regions.html'
 	})
-	.when('/main', {
-		templateUrl : 'views/main.html',
-		controller : 'MainCtrl'
-	})
 	.otherwise({
 		redirectTo : '/centers'
 	});
