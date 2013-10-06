@@ -2,9 +2,9 @@
 
 var config = {
 //	url : 'http://localhost:3000',
-	url : 'sheeprails.herokuapp.com',
+	url: 'sheeprails.herokuapp.com',
 	// url : '/pattern/pt42/masterdetail',
-	server : 'rails' // spring, rails
+	server: 'rails' // spring, rails
 };
 
 angular.module('sheepwebApp', ['ngResource'])
