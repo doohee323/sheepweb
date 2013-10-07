@@ -19,7 +19,6 @@ describe('Controller: CentersCtrl', function () {
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    debugger
     $scope.newCenter;
     //expect(scope.awesomeThings.length).toBe(3);
   });
