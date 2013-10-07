@@ -7,7 +7,7 @@ angular.module('sheepwebApp')
 
     var center_id = $routeParams.id;
 	RegionService.get({uip_center_id: center_id}, function(data) {
-	 	$scope.uip_regions = data.uip_regions;
+		$scope.uip_regions = data.uip_regions;
 	 	if(data.uip_regions.length > 0) {
 	 		$scope.newRegion = 	data.uip_regions[0];
 	 	} 
@@ -21,10 +21,11 @@ angular.module('sheepwebApp')
         $scope.newRegion.uip_center_id = center_id;
     	var params = {uip_region : $scope.newRegion};
     	RegionService.save(params, function (data) {
-        debugger
             data.uip_region.uip_center_id = center_id;
-    		$scope.uip_regions.put(data.uip_region);
-    		console.log(data);
+            // delete data.uip_region.id;
+            // delete data.uip_region.uip_center;
+            $scope.uip_regions.unshift(data.uip_region);
+	        console.log(data);
     	})
     }
 

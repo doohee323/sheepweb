@@ -19,6 +19,7 @@ angular.module('sheepwebApp')
         $scope.newCenter.id = '';
     	var params = {uip_center : $scope.newCenter};
     	CenterService.save(params, function (data) {
+            //debugger
     		$scope.uip_centers.unshift(data.uip_center);
     		console.log(data);
     	})
