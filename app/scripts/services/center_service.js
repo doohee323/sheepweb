@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('sheepwebApp')
-.factory('CenterService', function ($resource) {
-	return $resource("http://localhost\\:3000/uip_centers/:id", {
+.factory('CenterService', function ($resource, config) {
+	return $resource(config.url + "/uip_centers/:id", {
 		id:"@id"
 	}, {
 		update: {

@@ -1,13 +1,14 @@
 'use strict';
 
 var config = {
-//	url : 'http://localhost:3000',
-	url: 'sheeprails.herokuapp.com',
+//	url : 'http://localhost\\:3000',
+	url: 'http://sheeprails.herokuapp.com',
 	// url : '/pattern/pt42/masterdetail',
 	server: 'rails' // spring, rails
 };
 
 angular.module('sheepwebApp', ['ngResource'])
+	.constant('config', config)
 	.config(function($routeProvider, $locationProvider) {
 	$routeProvider
 	.when('/centers', {

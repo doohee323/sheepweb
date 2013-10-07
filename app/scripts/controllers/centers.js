@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sheepwebApp')
-  .controller('CentersCtrl', function ($scope, $location, $routeParams, CenterService) {
+  .controller('CentersCtrl', function ($scope, $location, $routeParams, config, CenterService) {
 	$scope.$location = $location;
     $scope.newCenter = {};
 

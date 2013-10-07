@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('sheepwebApp')
-.factory('RegionService', function ($resource) {
-	return $resource("http://localhost\\:3000/uip_regions/:id", {
+.factory('RegionService', function ($resource, config) {
+	return $resource(config.url + "/uip_regions/:id", {
 		id:"@id"
 	}, {
 		update: {
