@@ -21,6 +21,8 @@ angular.module('sheepwebApp')
         $scope.newRegion.uip_center_id = center_id;
     	var params = {uip_region : $scope.newRegion};
     	RegionService.save(params, function (data) {
+        debugger
+            data.uip_region.uip_center_id = center_id;
     		$scope.uip_regions.put(data.uip_region);
     		console.log(data);
     	})

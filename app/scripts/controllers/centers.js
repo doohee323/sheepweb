@@ -47,11 +47,6 @@ angular.module('sheepwebApp')
     	$scope.newCenter = {};
     }
 
-    $scope.goTo = function ( baseUrl, center ) {
-    	var path = baseUrl + center.id;
-	  	$location.path( path );
-	}
-
 	var lookupDs = function ( id, callback ) {
     	for (var i = $scope.uip_centers.length - 1; i >= 0; i--) {
     		if ($scope.uip_centers[i].id == (id + '')) {

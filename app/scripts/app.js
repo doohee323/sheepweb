@@ -11,6 +11,9 @@ angular.module('sheepwebApp', ['ngResource'])
 	.constant('config', config)
 	.config(function($routeProvider, $locationProvider) {
 	$routeProvider
+	.when('/', {
+		redirectTo : '/centers'
+	})
 	.when('/centers', {
 		controller : 'CentersCtrl',
 		templateUrl : './views/centers.html'
