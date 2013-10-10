@@ -5,7 +5,20 @@
             <h3>regions</h3>
         </header>
 
-        <div class="row">
+        <div>
+           <h4>centers : 
+            <select ng-model="uip_centers" ng-selected="center_id" ng-change="getRegions()" ng-options="uip_center.name for uip_center in uip_centers | orderBy:orderby:reverse"></select>
+            {{mySelections}}
+            {{selectedIDs}}
+           </h4>
+            <div class="ngGrid" >
+              <div>
+                <div ng-grid="gridOptions" class="well"></div>
+              </div>
+            </div>
+        </div>
+
+       <div class="row">
             <div class="span3">
                 uip_center_id:
                 <br />
@@ -52,9 +65,8 @@
         </div>
         <br /><br />
         <div>
-            
 
-<table class="table table-hover table-striped table-condensed table-bregioned regionsTable">
+<!-- <table class="table table-hover table-striped table-condensed table-bregioned regionsTable">
     <thead>
         <tr>
             <th ng-click="setOrder('region_code')">region_code</th>
@@ -96,7 +108,7 @@
             </td>
         </tr>
     </tbody>
-</table>
+</table> -->
 
         </div>
     </div>

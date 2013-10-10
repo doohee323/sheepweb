@@ -3,11 +3,13 @@
 var config = {
 //	url : 'http://localhost\\:3000',
 	url: 'http://sheeprails.herokuapp.com',
+	// url : 'http://localhost\\:7001/rest',
 	// url : '/pattern/pt42/masterdetail',
-	server: 'rails' // spring, rails
+	server: 'rails', // spring, rails,
+	centers: {}
 };
 
-angular.module('sheepwebApp', ['ngResource'])
+angular.module('sheepwebApp', ['ngResource', 'ngGrid'])
 	.constant('config', config)
 	.config(function($routeProvider, $locationProvider) {
 	$routeProvider

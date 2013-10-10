@@ -4,7 +4,7 @@ angular.module('sheepwebApp')
   .controller('CentersCtrl', function ($scope, $location, $routeParams, config, CenterService) {
 	$scope.$location = $location;
     $scope.newCenter = {};
-
+    
 	CenterService.get({}, function(data) {
 	 	$scope.uip_centers = data.uip_centers;
 	    if($location.$$path != '/centers') {
@@ -18,22 +18,23 @@ angular.module('sheepwebApp')
     $scope.addCenter = function () {
         $scope.newCenter.id = '';
     	var params = {uip_center : $scope.newCenter};
+    	if(config.server == 'spring') params = $scope.newCenter; // java
     	CenterService.save(params, function (data) {
-            //debugger
     		$scope.uip_centers.unshift(data.uip_center);
     		console.log(data);
     	})
-    }
+    };
     $scope.updateCenter = function (center) {
     	var params = {uip_center : $scope.newCenter,
     				 id : $scope.newCenter.id};
+    	if(config.server == 'spring') params = params.uip_center; // java
     	CenterService.update(params, function (data) {
     		console.log(data);
     		lookupDs(center.id, function (row){
 				$scope.uip_centers[row] = center;
     		});
     	})
-    }
+    };
     $scope.deleteCenter = function (center) {
     	CenterService.delete({"id" : center.id}, function (data) {
     		console.log(data);
@@ -42,7 +43,7 @@ angular.module('sheepwebApp')
     		});
     		$scope.newregion = {};
     	})
-    }
+    };
 
     $scope.initCenter = function () {
     	$scope.newCenter = {};
