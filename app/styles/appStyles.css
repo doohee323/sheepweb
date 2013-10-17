@@ -86,12 +86,3 @@ footer {
 .close {
     opacity: 1.0;
 }
-
-.ngGrid .well {
-  height: 200px;
-}
-
-.ngGrid select {
-  width: 100%;
-}
-

@@ -5,62 +5,30 @@ angular.module('sheepwebApp')
 	$scope.$location = $location;
     $scope.newRegion = {};
 
-    $scope.gridOptions = {
-        data: 'uip_regions',
-        multiSelect: false,  
-        enableColumnResize:true, 
-        columnDefs: [
-        {field:'uip_center_id', displayName:'uip_center_id'},
-        {field:'id', displayName:'id'},
-        {field:'code', displayName:'code'},
-        {field:'region_code', displayName:'region_code'},
-        {field:'name', displayName:'name'},
-        {field:'chief', displayName:'chief'},
-        {field:'address', displayName:'address'}
-        ],
-        selectedItems: $scope.mySelections,
-        afterSelectionChange: function (item) {
-            $scope.newRegion = item.entity;
-        }
-    }
-
     var center_id = $routeParams.id;
-    $scope.center_id = center_id;
-
-    function getRegions() {
-        debugger
-        if($scope.uip_centers) center_id = $scope.uip_centers.id;
-        RegionService.get({id: center_id}, function(data) {
-            $scope.uip_regions = data.uip_regions;
-            $scope.uip_centers = angular.copy(config.centers);
-            $scope.gridOptions = data.uip_regions;
-            if(data.uip_regions.length > 0) {
-                $scope.newRegion =  data.uip_regions[0];
-            } 
-            $scope.regionsTotal = data.uip_regions.length;
-            $scope.newRegion.uip_center_id = center_id;
-        });
-    };
-
-    getRegions();
-
-    $scope.getRegions = function () {
-        getRegions();
-    };
+	RegionService.get({uip_center_id: center_id}, function(data) {
+		$scope.uip_regions = data.uip_regions;
+		$scope.gridOptions = data.uip_regions;
+	 	if(data.uip_regions.length > 0) {
+	 		$scope.newRegion = 	data.uip_regions[0];
+	 	} 
+        $scope.regionsTotal = data.uip_regions.length;
+		$scope.newRegion.uip_center_id = center_id;
+	});
 
     $scope.addRegion = function () {
         delete $scope.newRegion.id;
         delete $scope.newRegion.uip_center;
         $scope.newRegion.uip_center_id = center_id;
-        var params = {uip_region : $scope.newRegion}; // rails
-        if(config.server == 'spring') params = $scope.newRegion; // java
-        RegionService.save(params, function (data) {
+    	var params = {uip_region : $scope.newRegion}; // rails
+    	if(config.server == 'spring') params = $scope.newRegion; // java
+    	RegionService.save(params, function (data) {
             data.uip_region.uip_center_id = center_id;
             // delete data.uip_region.id;
             // delete data.uip_region.uip_center;
             $scope.uip_regions.unshift(data.uip_region);
-            console.log(data);
-        })
+	        console.log(data);
+    	})
     };
 
 	$scope.editRegion = function (region) {
