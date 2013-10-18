@@ -198,58 +198,6 @@ html,body {
         <script src="scripts/filters/ago_text.js"></script>
         <!-- endbuild -->
         
-<script>
-
-var socket = null;
-	$(document).ready(
-			function() {
-				socket = io.connect('http://127.0.0.1:8080/test1');
-				var content = $('#room-content');
-				socket.on('connect', function() {
-					content.append($('<p>').text('Connected'));
-				});
-
-				socket.on('centers', function(msg) {
-					content.append($('<p>').text(msg).append(
-							$('<em>').text(' from server')));
-				});
-
-				socket.on('message', function(msg) {
-					content.append($('<p>').text(msg).append(
-							$('<em>').text(' from server')));
-				});
-
-				$('#room-join').click(function(e) {
-					socket.emit('centers', 'centers');
-				});
-
-				$('#room-submit').click(
-						function(e) {
-							var textObj = $('#room-text');
-							var msg = textObj.val();
-							textObj.val('');
-							content.append($('<p>').text(msg).append(
-									$('<em>').text(' from me')));
-							socket.emit('insert', msg);
-						});
-
-				$('#room-join').click();
-
-			});
-</script> 
-
-<style type="text/css">
-.textbox {
-	width: 600px;
-	height: 200px;
-	overflow: auto;
-	margin: 5px 0;
-}
-</style>
-<span class="title">Room Event Example</span>
-	<div id="room-content" class="textbox"></div>
-	<div id="room-join"></div>
-	<input type="text" id="room-text" />
-	<input type="submit" value="Submit" id="room-submit" />       
+     
 </body>
 </html>

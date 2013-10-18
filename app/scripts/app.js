@@ -6,7 +6,8 @@ var config = {
 	url : 'http://localhost\\:7001/rest',
 	// url : '/pattern/pt42/masterdetail',
 	server: 'spring', // spring, rails,
-	socketLogined: false	
+	socketLogined: false,	
+	socketUrl: 'http://127.0.0.1:8080/ui_centers'	
 };
 
 angular.module('sheepwebApp', ['ngResource'])

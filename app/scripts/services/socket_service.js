@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('sheepwebApp')
-.factory('socket', function ($rootScope) {
-  var socket = io.connect("http://127.0.0.1:8080/test1");
+.factory('socket', function ($rootScope, config) {
+	var socket = io.connect(config.socketUrl);
   socket.on('connect',function() {
       console.log('Client has connected to the server!');
     });

@@ -7,24 +7,37 @@ angular.module('sheepwebApp')
     $scope.newCenter = {};
     var currentid = 0;
     
-	socket.on('centers', function(msg) {
-		console.log(msg);
-	});
+//	socket.on('connect', function() {
+//		$('#content_log').text('Connected');
+//	});
+
+//	socket.on('centers', function(msg) {
+//		$('#content_log').append($('<p>').text(msg).append(
+//				$('<em>').text(' from server')));
+//		console.log(msg);
+//	});
 	
+//    socket.on('message', function(msg) {
+//    	$('#content_log').append($('<p>').text(msg).append(
+//					$('<em>').text(' from server')));
+//	});
+    
 	socket.on('inserted', function(data) {
+		$('#content_log').text(data);
 		$scope.uip_centers.unshift(data.uip_center);
 	});	
 
 	socket.on('updated', function(data) {
-		debugger;
+		$('#content_log').text(data);
 		lookupDs(currentid, function (row){
-			$scope.uip_centers[row] = data;
+			$scope.uip_centers[row] = data.uip_center;
+			$scope.newCenter = $scope.uip_centers[row];
 		});
 	});	
 	
 	socket.on('deleted', function(data) {
-		debugger;
-		lookupDs(currentid, function (row){
+		$('#content_log').text(data);
+		lookupDs(data, function (row){
 			$scope.uip_centers.splice(row, 1);
 		});
 		$scope.newregion = {};
@@ -50,6 +63,7 @@ angular.module('sheepwebApp')
     	if(config.server == 'spring') params = $scope.newCenter; // java
     	CenterService.save(params, function (data) {
     		console.log(data);
+    		$scope.uip_centers.unshift(data.uip_center);
     		socket.emit('insert', data);
     	})
     };
@@ -68,7 +82,7 @@ angular.module('sheepwebApp')
     	CenterService.delete({"id" : center.id}, function (data) {
     		console.log(data);
     		currentid = center.id;
-    		socket.emit('delete', data);
+    		socket.emit('delete', currentid);
     	})
     };
 
