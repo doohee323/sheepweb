@@ -5,7 +5,8 @@ var config = {
 //	url: 'http://sheeprails.herokuapp.com',
 	url : 'http://localhost\\:7001/rest',
 	// url : '/pattern/pt42/masterdetail',
-	server: 'spring' // spring, rails
+	server: 'spring', // spring, rails,
+	socketLogined: false	
 };
 
 angular.module('sheepwebApp', ['ngResource'])
